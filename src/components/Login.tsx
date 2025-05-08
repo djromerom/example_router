@@ -1,14 +1,15 @@
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
 function Login() {
-    const navigate = useNavigate();
-  
-    function handleLogin() {
-      localStorage.setItem("auth", "true");
-      navigate("/");
-    }
-  
-    return <button onClick={handleLogin}>Iniciar sesión</button>;
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  function handleLogin() {
+    login();
+    navigate('/');
   }
 
-  export default Login
+  return <button onClick={handleLogin}>Iniciar sesión</button>;
+}
+
+export default Login
